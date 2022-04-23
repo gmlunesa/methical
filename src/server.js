@@ -31,7 +31,11 @@ const create = async () => {
   app.use("/api/person", personRoute);
 
   // Swagger docs
-  app.use("/", swaggerUI.serve, swaggerUI.setup(docs));
+  app.use(
+    "/",
+    swaggerUI.serve,
+    swaggerUI.setup(docs.swaggerInfo, docs.swaggerOptions)
+  );
 
   // Error handlers
   app.use(utils.logErrors);

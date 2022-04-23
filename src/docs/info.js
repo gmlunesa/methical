@@ -1,4 +1,4 @@
-module.exports = {
+const swaggerInfo = {
   openapi: "3.0.3",
   info: {
     title: "methical API",
@@ -163,4 +163,14 @@ module.exports = {
       },
     },
   },
+};
+
+const swaggerOptions = {
+  customCss: ".swagger-ui .topbar { display: none }",
+  customSiteTitle: "methical | An API for mythical people",
+};
+
+module.exports = {
+  swaggerInfo,
+  swaggerOptions,
 };
