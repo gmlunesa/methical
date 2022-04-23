@@ -87,6 +87,12 @@ module.exports = {
             description: "City of current residence",
             example: "Tokyo, Japan",
           },
+          photo: {
+            type: "String",
+            description: "URL to a photo",
+            example:
+              "https://upload.wikimedia.org/wikipedia/en/5/54/Solyaris_ussr_poster.jpg",
+          },
         },
       },
     },

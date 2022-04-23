@@ -31,6 +31,8 @@ router.get("/", async (req, res) => {
 router.get("/basic", async (req, res) => {
   try {
     const randomPerson = await getRandomPerson();
+    randomPerson.id = nanoid();
+    randomPerson.photo = generateData(data.photos, 1)[0];
     res.json(randomPerson);
   } catch (error) {
     res.send(500);
