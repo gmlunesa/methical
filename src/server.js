@@ -1,8 +1,10 @@
 var cors = require("cors");
+const docs = require("./docs/info");
 const express = require("express");
 const favicon = require("serve-favicon");
 const helmet = require("helmet");
 const path = require("path");
+const swaggerUI = require("swagger-ui-express");
 const utils = require("./utils/utils");
 
 require("dotenv").config();
@@ -21,12 +23,15 @@ const create = async () => {
   app.use(cors());
 
   // Root route
-  app.get("/", async (req, res) => {
-    return res.sendFile(path.join(__dirname, "../public/client.html"));
-  });
+  // app.get("/", async (req, res) => {
+  //   return res.sendFile(path.join(__dirname, "../public/client.html"));
+  // });
 
   // Routes
   app.use("/api/person", personRoute);
+
+  // Swagger docs
+  app.use("/", swaggerUI.serve, swaggerUI.setup(docs));
 
   // Error handlers
   app.use(utils.logErrors);
