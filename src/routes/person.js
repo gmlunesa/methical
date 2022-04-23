@@ -19,6 +19,7 @@ router.get("/", async (req, res) => {
     const randomPerson = await getRandomPerson();
     randomPerson.hobbies = generateData(data.hobbies, 3);
     randomPerson.traits = generateData(data.traits, 3);
+    randomPerson.photo = generateData(data.photos, 1);
     res.json(randomPerson);
   } catch (error) {
     res.send(500);
