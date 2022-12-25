@@ -2,7 +2,7 @@
 
 namespace Methical.DTOs
 {
-    public class MLPlatformRequest
+    public class MLPlatformSpaceRequest
     {
         [JsonPropertyName("data")]
         public string[] Data { get; set; }

@@ -26,9 +26,10 @@ namespace Methical.Tests
         public async void Get_Generate_Profile_ReturnsValidResult()
         {
             bool IsStableDiffusion = false;
+            bool FromSpace = false;
 
             // Act
-            var result = await _controller.GenerateProfile(IsStableDiffusion);
+            var result = await _controller.GenerateProfile(IsStableDiffusion, FromSpace);
 
             // Assert
             Assert.IsType<OkObjectResult>(result.Result);

@@ -21,9 +21,9 @@ namespace Methical.Controllers
         [Route("generate")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Profile))]
         [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
-        public async Task<ActionResult<Profile>> GenerateProfile(bool StableDiffusion)
+        public async Task<ActionResult<Profile>> GenerateProfile([FromQuery] bool StableDiffusion, bool FromSpace)
         {
-            Profile profile = await _profileService.GetProfileAsync(StableDiffusion);
+            Profile profile = await _profileService.GetProfileFromSpaceAsync(StableDiffusion);
 
             if (profile is null) return StatusCode(StatusCodes.Status500InternalServerError, "Something went wrong!");
             return Ok(profile);

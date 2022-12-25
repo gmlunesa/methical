@@ -10,7 +10,7 @@ namespace Methical.Tests.Services.Mock
 {
     internal class ProfileServiceMock : IProfileService
     {
-        public async Task<Profile> GetProfileAsync(bool IsStableDiffusion)
+        public async Task<Profile> GetProfileFromSpaceAsync(bool IsStableDiffusion)
         {
             Profile profile = new Profile
             {

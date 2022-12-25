@@ -21,9 +21,9 @@ namespace Methical.Services
             _httpClientFactory = httpClientFactory;
             _mlPlatform = configuration.Value;
         }
-        public async Task<Profile> GetProfileAsync(bool IsStableDiffusion)
+        public async Task<Profile> GetProfileFromSpaceAsync(bool IsStableDiffusion)
         {
-            string? httpClientName = _mlPlatform.Url;
+            string? httpClientName = _mlPlatform.SpaceUrl;
             using (HttpClient client = _httpClientFactory.CreateClient())
             {
                 client.BaseAddress = new Uri(httpClientName);
@@ -44,20 +44,20 @@ namespace Methical.Services
                     }
 
                     // Form MLPlatformRequest object
-                    MLPlatformRequest mlPlatformRequest = new()
+                    MLPlatformSpaceRequest mlPlatformRequest = new()
                     {
                         Data = ImageOptions.ToArray()
                     };
 
                     // TODO: Log requests
                     // Send POST request 
-                    using HttpResponseMessage response = await client.PostAsJsonAsync<MLPlatformRequest>(_mlPlatform.Endpoint, mlPlatformRequest);
+                    using HttpResponseMessage response = await client.PostAsJsonAsync<MLPlatformSpaceRequest>(_mlPlatform.SpaceEndpoint, mlPlatformRequest);
 
                     // Throw exception if request is not successful
                     response.EnsureSuccessStatusCode();
 
                     // Deserialize response
-                    MLPlatformResponse? mlPlatformResponse = await response.Content.ReadFromJsonAsync<MLPlatformResponse>();
+                    MLPlatformSpaceResponse? mlPlatformResponse = await response.Content.ReadFromJsonAsync<MLPlatformSpaceResponse>();
 
                     if (mlPlatformResponse is null)
                     {
