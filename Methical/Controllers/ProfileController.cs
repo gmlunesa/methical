@@ -21,7 +21,7 @@ namespace Methical.Controllers
         [Route("generate")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Profile))]
         [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
-        public async Task<ActionResult<Profile>> GenerateProfile([FromQuery] bool StableDiffusion, bool FromSpace)
+        public async Task<ActionResult<Profile>> GenerateProfile([FromQuery] bool StableDiffusion, bool FromSpace = true)
         {
             Profile profile = await _profileService.GetProfileFromSpaceAsync(StableDiffusion);
 
